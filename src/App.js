@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useRef} from 'react';
+import EventDetails from './components/EventDetails';
+import RsvpForm from './components/RsvpForm';
+import Example from './components/Example'
 
-function App() {
+const App = () => {
+
+  const scrollRef = useRef(null);
+
+  const scrollToRsvpForm = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <EventDetails scrollToTarget={scrollToRsvpForm}/>
+      <RsvpForm scrollRef={scrollRef}/>
     </div>
   );
-}
+};
 
 export default App;
